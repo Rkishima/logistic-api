@@ -1,4 +1,4 @@
-package com.rkishima.logisticapi;
+package br.com.rkishima;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
