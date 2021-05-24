@@ -1,4 +1,4 @@
-package br.com.rkishima.controller;
+package br.com.rkishima.api.controller;
 
 import br.com.rkishima.domain.model.Cliente;
 import br.com.rkishima.domain.repository.ClienteRepository;
