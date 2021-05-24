@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @AllArgsConstructor
@@ -33,12 +34,12 @@ public class ClienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente create(@RequestBody Cliente cliente){
+    public Cliente create(@Valid @RequestBody Cliente cliente){
         return clienteRepository.save(cliente);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> update (@PathVariable Long id, @RequestBody Cliente cliente){
+    public ResponseEntity<Cliente> update (@Valid @PathVariable Long id, @RequestBody Cliente cliente){
         if (!clienteRepository.existsById(id)){
             return ResponseEntity.notFound().build();
         }
