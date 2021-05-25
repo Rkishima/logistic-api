@@ -1,10 +1,9 @@
 package br.com.rkishima.api.controller;
 
-import br.com.rkishima.domain.model.Cliente;
+import br.com.rkishima.domain.entities.Cliente;
 import br.com.rkishima.domain.repository.ClienteRepository;
 import br.com.rkishima.domain.service.ClienteService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
 package br.com.rkishima.domain.repository;
 
-import br.com.rkishima.domain.model.Cliente;
+import br.com.rkishima.domain.entities.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

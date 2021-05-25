@@ -1,16 +1,14 @@
 package br.com.rkishima.domain.service;
 
-import br.com.rkishima.domain.exception.BusinessException;
-import br.com.rkishima.domain.model.Cliente;
-import br.com.rkishima.domain.model.Delivery;
-import br.com.rkishima.domain.model.DeliveryStatus;
-import br.com.rkishima.domain.repository.ClienteRepository;
+import br.com.rkishima.domain.entities.Cliente;
+import br.com.rkishima.domain.entities.Delivery;
+import br.com.rkishima.domain.entities.DeliveryStatus;
 import br.com.rkishima.domain.repository.DeliveryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @AllArgsConstructor
 @Service
@@ -26,7 +24,7 @@ public class SolicitationDeliveryService {
 
         delivery.setCliente(cliente); //Isso é para não trazer como resposta apenas o ID preenchido
         delivery.setStatus(DeliveryStatus.PENDENTE);
-        delivery.setOrderDate(LocalDateTime.now());
+        delivery.setOrderDate(OffsetDateTime.now());
         return deliveryRepository.save(delivery);
     }
 }

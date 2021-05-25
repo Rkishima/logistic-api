@@ -1,4 +1,4 @@
-package br.com.rkishima.domain.model;
+package br.com.rkishima.domain.entities;
 
 import br.com.rkishima.domain.ValidationGroups;
 import lombok.Data;
@@ -9,7 +9,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.validation.groups.Default;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Data

@@ -1,4 +1,4 @@
-package br.com.rkishima.domain.model;
+package br.com.rkishima.domain.entities;
 
 import br.com.rkishima.domain.ValidationGroups;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.groups.ConvertGroup;
 import javax.validation.groups.Default;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Data
@@ -29,6 +29,8 @@ public class Delivery {
     @ManyToOne
     private Cliente cliente;
 
+    @Valid
+    @NotNull
     @Embedded
     private Recipient recipient;
 
@@ -40,8 +42,8 @@ public class Delivery {
     private DeliveryStatus status;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private LocalDateTime orderDate;
+    private OffsetDateTime orderDate;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private LocalDateTime endDate;
+    private OffsetDateTime endDate;
 }

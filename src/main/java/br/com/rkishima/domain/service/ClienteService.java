@@ -1,7 +1,7 @@
 package br.com.rkishima.domain.service;
 
 import br.com.rkishima.domain.exception.BusinessException;
-import br.com.rkishima.domain.model.Cliente;
+import br.com.rkishima.domain.entities.Cliente;
 import br.com.rkishima.domain.repository.ClienteRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
