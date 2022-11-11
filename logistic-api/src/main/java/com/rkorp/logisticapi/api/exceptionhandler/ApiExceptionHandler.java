@@ -1,5 +1,6 @@
 package com.rkorp.logisticapi.api.exceptionhandler;
 
+import com.rkorp.logisticapi.domain.exception.BusinessException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -11,6 +12,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -40,6 +42,17 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         problem.setCampos(campos);
         return handleExceptionInternal(ex, problem, headers, status, request);
 
+    }
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<Object> handleBusiness(BusinessException ex, WebRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+
+        Problem problem = new Problem();
+        problem.setStatus(status.value());
+        problem.setDataHora(LocalDateTime.now());
+        problem.setTitulo(ex.getMessage());
+
+        return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
 
     }
 }

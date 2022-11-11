@@ -2,6 +2,7 @@ package com.rkorp.logisticapi.api.controller;
 
 import com.rkorp.logisticapi.domain.model.Cliente;
 import com.rkorp.logisticapi.domain.repository.ClienteRepository;
+import com.rkorp.logisticapi.domain.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,9 @@ public class ClienteController {
 
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private ClienteService clienteService;
 
 
     @GetMapping()
@@ -33,7 +37,7 @@ public class ClienteController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente saveClient(@Valid @RequestBody Cliente cliente) {
-        return clienteRepository.save(cliente);
+        return clienteService.save(cliente);
     }
 
     @PutMapping("/{id}")
@@ -42,7 +46,7 @@ public class ClienteController {
             return ResponseEntity.notFound().build();
         }
         cliente.setId(id);
-        cliente = clienteRepository.save(cliente);
+        cliente = clienteService.save(cliente);
 
         return ResponseEntity.ok(cliente);
     }
