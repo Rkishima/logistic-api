@@ -1,6 +1,6 @@
 package com.rkorp.logisticapi.api.controller;
 
-import com.rkorp.logisticapi.domain.model.Cliente;
+import com.rkorp.logisticapi.domain.model.Customer;
 import com.rkorp.logisticapi.domain.repository.ClienteRepository;
 import com.rkorp.logisticapi.domain.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,12 @@ public class ClienteController {
 
 
     @GetMapping()
-    public List<Cliente> findAll() {
+    public List<Customer> findAll() {
         return clienteRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> findById(Long clienteId) {
+    public ResponseEntity<Customer> findById(Long clienteId) {
         return clienteRepository.findById(clienteId)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -36,19 +36,19 @@ public class ClienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente saveClient(@Valid @RequestBody Cliente cliente) {
-        return clienteService.save(cliente);
+    public Customer saveClient(@Valid @RequestBody Customer customer) {
+        return clienteService.save(customer);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> updateClient(Long id, @Valid @RequestBody Cliente cliente) {
+    public ResponseEntity<Customer> updateClient(Long id, @Valid @RequestBody Customer customer) {
         if (!clienteRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
-        cliente.setId(id);
-        cliente = clienteService.save(cliente);
+        customer.setId(id);
+        customer = clienteService.save(customer);
 
-        return ResponseEntity.ok(cliente);
+        return ResponseEntity.ok(customer);
     }
 
     @DeleteMapping("/{id}")

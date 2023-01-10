@@ -1,6 +1,6 @@
-CREATE TABLE cliente (
+CREATE TABLE customer (
 	id serial PRIMARY KEY,
-	nome VARCHAR ( 60 ) UNIQUE NOT NULL,
+	name VARCHAR ( 60 ) UNIQUE NOT NULL,
 	email VARCHAR ( 255 ) UNIQUE NOT NULL,
-	telefone VARCHAR ( 20 ) NOT NULL
+	phone VARCHAR ( 20 ) NOT NULL
 	);
