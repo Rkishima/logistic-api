@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 @Data
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Cliente {
+public class Customer {
 
     @Id
     @EqualsAndHashCode.Exclude
