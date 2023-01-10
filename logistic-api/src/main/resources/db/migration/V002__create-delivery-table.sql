@@ -10,7 +10,7 @@ CREATE TABLE delivery (
      recipient_name VARCHAR(60) NOT NULL,
      recipient_address VARCHAR(255) NOT NULL,
      recipient_number VARCHAR(30) NOT NULL,
-     recipient_complement VARCHAR(60) NOT NULL,
+     recipient_complement VARCHAR(60),
      recipient_district VARCHAR (30) NOT NULL
 	);
 
