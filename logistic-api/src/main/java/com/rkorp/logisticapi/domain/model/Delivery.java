@@ -1,5 +1,6 @@
 package com.rkorp.logisticapi.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -26,9 +27,14 @@ public class Delivery {
     private BigDecimal tax;
 
     @Enumerated(EnumType.STRING)
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private DeliveryStatus status;
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime requestDate;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime deliveryDate;
 
 }

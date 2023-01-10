@@ -28,4 +28,8 @@ public class CustomerService {
     public void delete(Long id){
         customerRepository.deleteById(id);
     }
+
+    public Customer search(Long customerId){
+        return customerRepository.findById(customerId).orElseThrow(() -> new BusinessException("Cliente não encontrado"));
+    }
 }
