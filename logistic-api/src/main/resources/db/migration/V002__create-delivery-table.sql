@@ -11,7 +11,7 @@ CREATE TABLE delivery (
      recipient_address VARCHAR(255) NOT NULL,
      recipient_number VARCHAR(30) NOT NULL,
      recipient_complement VARCHAR(60),
-     recipient_district VARCHAR (30) NO T NULL
+     recipient_district VARCHAR (30) NOT NULL
 	);
 
 	alter table delivery add constraint fk_delivery_customer foreign key (customer_id) references customer (id);
