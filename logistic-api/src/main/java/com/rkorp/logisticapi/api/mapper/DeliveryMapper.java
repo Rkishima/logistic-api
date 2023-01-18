@@ -1,7 +1,7 @@
 package com.rkorp.logisticapi.api.mapper;
 
-import com.rkorp.logisticapi.api.model.DeliveryModel;
-import com.rkorp.logisticapi.api.model.input.DeliveryInput;
+import com.rkorp.logisticapi.api.DTO.DeliveryDTO;
+import com.rkorp.logisticapi.api.DTO.input.DeliveryInput;
 import com.rkorp.logisticapi.domain.model.Delivery;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
 public class DeliveryMapper {
     private ModelMapper modelMapper;
 
-    public DeliveryModel toModel(Delivery delivery){
-        return modelMapper.map(delivery, DeliveryModel.class);
+    public DeliveryDTO toModel(Delivery delivery){
+        return modelMapper.map(delivery, DeliveryDTO.class);
     }
 
-    public List<DeliveryModel> toCollectionModel(List<Delivery> deliveries){
+    public List<DeliveryDTO> toCollectionModel(List<Delivery> deliveries){
         return deliveries.stream().map(this::toModel).collect(Collectors.toList());
     }
 

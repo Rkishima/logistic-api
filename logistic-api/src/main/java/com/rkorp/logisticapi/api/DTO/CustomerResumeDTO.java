@@ -1,9 +1,9 @@
-package com.rkorp.logisticapi.api.model;
+package com.rkorp.logisticapi.api.DTO;
 
 import lombok.Data;
 
 @Data
-public class CustomerResumeModel {
+public class CustomerResumeDTO {
     private Long id;
     private String name;
 }

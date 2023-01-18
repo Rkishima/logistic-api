@@ -1,6 +1,7 @@
 package com.rkorp.logisticapi.api.exceptionhandler;
 
 import com.rkorp.logisticapi.domain.exception.BusinessException;
+import com.rkorp.logisticapi.domain.exception.NotFoundEntityException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -44,6 +45,18 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, problem, headers, status, request);
 
     }
+
+    @ExceptionHandler(NotFoundEntityException.class)
+    public ResponseEntity<Object> handleNotFoundEntity(NotFoundEntityException ex, WebRequest request){
+        HttpStatus status = HttpStatus.NOT_FOUND;
+
+        Problem problem = new Problem();
+        problem.setStatus(status.value());
+        problem.setDataHora(OffsetDateTime.now());
+        problem.setTitulo(ex.getMessage());
+
+        return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
+    }
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<Object> handleBusiness(BusinessException ex, WebRequest request){
         HttpStatus status = HttpStatus.BAD_REQUEST;
@@ -54,6 +67,5 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         problem.setTitulo(ex.getMessage());
 
         return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
-
     }
 }

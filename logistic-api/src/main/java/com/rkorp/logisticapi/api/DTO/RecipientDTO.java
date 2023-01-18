@@ -1,12 +1,9 @@
-package com.rkorp.logisticapi.api.model;
+package com.rkorp.logisticapi.api.DTO;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.validation.constraints.NotBlank;
-
 @Data
-public class RecipientModel {
+public class RecipientDTO {
 
     private String name;
     private String address;

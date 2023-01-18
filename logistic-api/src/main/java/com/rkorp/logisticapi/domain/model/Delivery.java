@@ -13,6 +13,8 @@ import javax.validation.groups.Default;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -48,4 +50,17 @@ public class Delivery {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private OffsetDateTime deliveryDate;
 
+    @OneToMany(mappedBy = "delivery")
+    private List<Occurrence> occurrenceList = new ArrayList<>();
+
+    public Occurrence addOccurrence(String description) {
+        Occurrence occurrence = new Occurrence();
+        occurrence.setDescription(description);
+        occurrence.setRegistrationDate(OffsetDateTime.now());
+        occurrence.setDelivery(this);
+
+        this.getOccurrenceList().add(occurrence);
+        return occurrence;
+
+    }
 }

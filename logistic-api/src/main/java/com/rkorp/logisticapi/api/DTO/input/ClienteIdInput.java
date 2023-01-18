@@ -1,4 +1,4 @@
-package com.rkorp.logisticapi.api.model.input;
+package com.rkorp.logisticapi.api.DTO.input;
 
 import lombok.Data;
 
