@@ -1,6 +1,7 @@
 package com.rkorp.logisticapi.api.exceptionhandler;
 
 import com.rkorp.logisticapi.domain.exception.BusinessException;
+import com.rkorp.logisticapi.domain.exception.NotFoundEntityException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -17,6 +18,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,11 +39,23 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         }
         Problem problem = new Problem();
         problem.setStatus(status.value());
-        problem.setDataHora(LocalDateTime.now());
+        problem.setDataHora(OffsetDateTime.now());
         problem.setTitulo("Um ou mais campos estão inválidos. Faça o prenchimento correto e tente novamente");
         problem.setCampos(campos);
         return handleExceptionInternal(ex, problem, headers, status, request);
 
+    }
+
+    @ExceptionHandler(NotFoundEntityException.class)
+    public ResponseEntity<Object> handleNotFoundEntity(NotFoundEntityException ex, WebRequest request){
+        HttpStatus status = HttpStatus.NOT_FOUND;
+
+        Problem problem = new Problem();
+        problem.setStatus(status.value());
+        problem.setDataHora(OffsetDateTime.now());
+        problem.setTitulo(ex.getMessage());
+
+        return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
     }
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<Object> handleBusiness(BusinessException ex, WebRequest request){
@@ -49,10 +63,9 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
         Problem problem = new Problem();
         problem.setStatus(status.value());
-        problem.setDataHora(LocalDateTime.now());
+        problem.setDataHora(OffsetDateTime.now());
         problem.setTitulo(ex.getMessage());
 
         return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
-
     }
 }
