@@ -2,6 +2,7 @@ package com.rkorp.logisticapi.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rkorp.logisticapi.domain.ValidationGroups;
+import com.rkorp.logisticapi.domain.exception.BusinessException;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -62,5 +63,17 @@ public class Delivery {
         this.getOccurrenceList().add(occurrence);
         return occurrence;
 
+    }
+
+    public void finish(){
+        if (!canBeFinish()){
+            throw new BusinessException("Entre não pode ser finalizada");
+        }
+        setStatus(DeliveryStatus.FINISHED);
+        setDeliveryDate(OffsetDateTime.now());
+    }
+
+    public boolean canBeFinish(){
+        return DeliveryStatus.PENDING.equals(getStatus());
     }
 }
